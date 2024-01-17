@@ -7,7 +7,9 @@ import { Link } from 'react-router-dom';
 import { loginuser } from './Services/auth';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 export default function Login() {
+  const navigate=useNavigate();
     const [showPassword, setshowPassword] = useState("Hide")
     const [email, setemail] = useState("")
     const [password, setpassword] = useState("");
@@ -19,7 +21,7 @@ export default function Login() {
         if(email===""|| password===""){
           toast.error("Please enter all values")
         }else{
-          loginuser({username:email,password:password,toast:toast})
+          loginuser({username:email,password:password,toast:toast,navigate:navigate})
         }
       }
   return (
