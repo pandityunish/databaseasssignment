@@ -9,3 +9,8 @@ export const getallspecailisturl=`${baseurl}/getallspecialist`;
 export const updatespecialisturl=`${baseurl}/updatespecialsit`;
 export const getproblemdetailsurl=`${baseurl}/getproblemdetails`;
 export const getspecialistproblemurl=`${baseurl}/getspecialistproblem`;
+export const addspecialisturl=`${baseurl}/addspecialist`;
+export const updatesolutionurl=`${baseurl}/updatesolution`;
+
+export const searchproblemsurl=`${baseurl}/searchproblems`;
+export const deleteproblemurl=`${baseurl}/deleteproblem`;

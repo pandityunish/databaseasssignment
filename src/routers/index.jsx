@@ -6,6 +6,7 @@ import AddProblem from "../Pages/AddProblem";
 import Detailpage from "../Pages/Detailpage";
 import SepcialistsPage from "../Pages/SepcialistsPage";
 import SpecialistDetails from "../Pages/SpecialistDetails";
+import Search from "../Pages/Search";
 
 export const routes=createBrowserRouter([
     {
@@ -35,5 +36,9 @@ export const routes=createBrowserRouter([
     {
         path:"/specialist-detail",
         element:<SpecialistDetails/>
+    },
+    {
+        path:"/search",
+        element:<Search/>
     },
 ])

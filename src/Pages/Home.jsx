@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navabar from '../Components/Navabar'
 import { useNavigate } from 'react-router-dom'
-import { assignproblemtospecialist, getallproblems, getallspecialissts } from './Services/problemservice';
+import { assignproblemtospecialist, deleteproblems, getallproblems, getallspecialissts } from './Services/problemservice';
 import { TimeAgo } from '../Components/Timeago';
 import { Button, Dialog } from '@mui/material';
 import DialogActions from '@mui/material/DialogActions';
@@ -52,13 +52,13 @@ const handleClose = () => {
             {allspecalist.map((e,i)=>{
               return  <div key={i} className='flex gap-3 py-2 items-center'>
               <p>{e.specialist_name}</p>
-              {e.currentlyworkingon==="is not working"? <button className='bg-blue-600 rounded-lg  p-1 px-4 text-white' onClick={()=>{
+              {e.currentlyworkingon==="working"?<button className='bg-blue-600 rounded-lg  p-1 px-4 text-white'>
+      Working
+      </button>: <button className='bg-blue-600 rounded-lg  p-1 px-4 text-white' onClick={()=>{
                 assignproblemtospecialist({toast:toast,id:e.specialist_id,problem_id:setid})
               }}>
            Assign
-           </button>:<button className='bg-blue-600 rounded-lg  p-1 px-4 text-white'>
-      Working
-      </button>} 
+           </button>} 
                
               </div>
             })}
@@ -109,11 +109,13 @@ const handleClose = () => {
     </div>
     </>:<div className='flex flex-col items-center'>
       <button className='bg-blue-600 rounded-lg  p-1 px-4 text-white'>
-      Working
+      {e.status==="solved"?"Solved": "Working"}
       </button>
       
     </div>}
-    <button className='bg-red-600 rounded-lg p-1 h-8 px-4 text-white'>
+    <button className='bg-red-600 rounded-lg p-1 h-8 px-4 text-white' onClick={()=>{
+      deleteproblems({toast:toast,id:e.problem_number})
+    }}>
       Delete
       </button>
       </div>

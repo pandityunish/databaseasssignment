@@ -10,9 +10,9 @@ export default function Navabar() {
         <Link to="/home" className='cursor-pointer'>Home</Link>
         <Link to="/specialist-page" className='cursor-pointer'>Specialist</Link>
         <Link to="/" className='cursor-pointer'>Profile</Link>
-        <div className='cursor-pointer'>
+        <Link to="/search" className='cursor-pointer'>
         <SearchIcon/>
-        </div>
+        </Link>
       </div>
     </div>
   )

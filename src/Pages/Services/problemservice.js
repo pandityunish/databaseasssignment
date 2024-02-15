@@ -1,4 +1,4 @@
-import { addproblemurl, getallproblemsurl, getallspecailisturl, getproblemdetailsurl, getproblemtype, getspecialistproblemurl, updatespecialisturl } from "../../routers/apiroutes"
+import { addproblemurl, addspecialisturl, deleteproblemurl, getallproblemsurl, getallspecailisturl, getproblemdetailsurl, getproblemtype, getspecialistproblemurl, searchproblemsurl, updatesolutionurl, updatespecialisturl } from "../../routers/apiroutes"
 
 export const getallproblemstype=async({setproblemtypes})=>{
     try {
@@ -110,7 +110,37 @@ export const addproblem=async({toast,equipment_type,software_name,description,no
         console.log(error)
     }
 }
-
+export const addspecialist=async({toast,specialist_name})=>{
+    try {
+        console.log(specialist_name)
+        const res=await fetch(addspecialisturl,{
+            method:"POST",
+            headers:{
+                "Content-Type":"Application/json"
+            },
+            body:JSON.stringify({
+           
+             "specialist_name":specialist_name,
+             
+             
+            })
+        });
+        if(res.status==200){
+            const data=await res.json();
+            console.log(data);
+           
+            toast.success("Added successfull");
+           
+        }else{
+            console.log(res);
+            const data=await res.json();
+            console.log(data)
+            toast.error(data.error)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
 export const assignproblemtospecialist=async({toast,id,problem_id})=>{
     try {
         console.log()
@@ -162,6 +192,98 @@ export const getproblemdetails=async({toast,id,setproblemdetails})=>{
             const data=await res.json();
             console.log(data);
             setproblemdetails(data)
+           
+        }else{
+            console.log(res);
+            const data=await res.json();
+            console.log(data)
+            toast.error(data.error)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const searchqueryproblems=async({toast,search,setproblems})=>{
+    try {
+        console.log()
+        const res=await fetch(searchproblemsurl,{
+            method:"POST",
+            headers:{
+                "Content-Type":"Application/json"
+            },
+            body:JSON.stringify({
+           
+             "search":search,
+             
+             
+            })
+        });
+        if(res.status==200){
+            const data=await res.json();
+            console.log(data);
+            setproblems(data)
+           
+        }else{
+            console.log(res);
+            const data=await res.json();
+            console.log(data)
+            toast.error(data.error)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const deleteproblems=async({toast,id})=>{
+    try {
+     
+        const res=await fetch(deleteproblemurl,{
+            method:"POST",
+            headers:{
+                "Content-Type":"Application/json"
+            },
+            body:JSON.stringify({
+           
+             "id":id,
+             
+             
+            })
+        });
+        if(res.status==200){
+            const data=await res.json();
+            console.log(data);
+            
+          toast.success("Delete Successfully")
+           
+        }else{
+            console.log(res);
+            const data=await res.json();
+            console.log(data)
+            toast.error(data.error)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const updatesolution=async({toast,id,resolution_details,time,specialist_id})=>{
+    try {
+        console.log()
+        const res=await fetch(updatesolutionurl,{
+            method:"POST",
+            headers:{
+                "Content-Type":"Application/json"
+            },
+            body:JSON.stringify({
+           
+             "problem_id":id,
+             "resolution_details":resolution_details,
+             "time":time,
+             "id":specialist_id
+             
+            })
+        });
+        if(res.status==200){
+            const data=await res.json();
+            console.log(data);
            
         }else{
             console.log(res);
